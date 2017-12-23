@@ -13,21 +13,21 @@ import getVisibleExpenses from './selector/expenses'
 import { Provider } from 'react-redux';
 // import './playground/redux-101'
 const store = configureStore();
-const waterBill = addExpense({description:'water bill', amount:6000,createdAt:1000});
-const gasBill = addExpense({description:'gas bill', amount:8000,createdAt:2000});
-const powerBill = addExpense({description:'power bill', amount:9000,createdAt:3000});
-
-
-store.subscribe(() => {
-  const state = store.getState();
-  console.log(state.filters);
-  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-  console.log(visibleExpenses);
-});
-
-store.dispatch(gasBill);
-store.dispatch(waterBill);
-store.dispatch(powerBill);
+// const waterBill = addExpense({description:'water bill', amount:6000,createdAt:1000});
+// const gasBill = addExpense({description:'gas bill', amount:8000,createdAt:2000});
+// const powerBill = addExpense({description:'power bill', amount:9000,createdAt:3000});
+//
+//
+// store.subscribe(() => {
+//   const state = store.getState();
+//   console.log(state.filters);
+//   const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+//   console.log(visibleExpenses);
+// });
+//
+// // store.dispatch(gasBill);
+// store.dispatch(waterBill);
+// store.dispatch(powerBill);
 
 const jsx = (
   <Provider store={store}>
