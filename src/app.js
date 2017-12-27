@@ -11,7 +11,11 @@ import expensesReducer from './reducers/expenses'
 import filterReducer from './reducers/filters'
 import getVisibleExpenses from './selector/expenses'
 import { Provider } from 'react-redux';
+if (process.env.NODE_ENV !=='production'){
+  console.log('Development mode on!');
+}
 // import './playground/redux-101'
+console.log('test');
 const store = configureStore();
 // const waterBill = addExpense({description:'water bill', amount:6000,createdAt:1000});
 // const gasBill = addExpense({description:'gas bill', amount:8000,createdAt:2000});
