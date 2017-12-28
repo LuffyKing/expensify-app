@@ -11,9 +11,9 @@ exports[`this tests the ExpenseListItem component 1`] = `
     </Link>
   </h3>
   <p>
-    195
-     - 
-    0
+    $195.00
+    -
+    1st January, 1970
   </p>
 </div>
 `;
