@@ -8,14 +8,12 @@ export const ExpenseSummary=({expenseCount, expenseTotal})=>{
   const expTextText = `${this.props.expenseCount} ${expText}`;
   const amoResult = this.props.expenseTotal;
   const amoResultText =  `${numeral(amoResult).format('$0,0.00')}`;
-  render(){
-    return(
-      <h1>
-        Viewing {this.expTextText}  totalling {this.amoResultText}
-      </h1>
+  return(
+    <h1>
+      Viewing {this.expTextText}  totalling {this.amoResultText}
+    </h1>
 
-    );
-  }
+  );
 
 
 }
