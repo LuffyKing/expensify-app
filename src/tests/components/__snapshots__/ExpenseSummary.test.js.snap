@@ -1,10 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`this test if the component renders 1`] = `
-<p>
+exports[`this test for one expense 1`] = `
+<h1>
   Viewing 
-  undefined expenses
+  1 expense
+    totalling 
+  $195.00
+</h1>
+`;
+
+exports[`this test if the component renders 1`] = `
+<h1>
+  Viewing 
+  0 expenses
     totalling 
   $0.00
-</p>
+</h1>
 `;

@@ -6,7 +6,7 @@ import expenses from '../fixtures/expenses';
 import numeral from 'numeral';
 let wrapper;
 beforeEach(() => {
-  wrapper = shallow(<ExpenseSummary></ExpenseSummary>);
+  wrapper = shallow(<ExpenseSummary expenseCount={0} expenseTotal={0}></ExpenseSummary>);
 
 });
 test('this test if the component renders', ()=>{
@@ -17,14 +17,12 @@ test('this test for one expense', ()=>{
     expenseCount:[expenses[0]].length,
     expenseTotal:selectExpensesTotal([expenses[0]])
   });
-  expect(wrapper.instance().props.expenseTotal).toBe(expenses[0].amount);
-  expect(wrapper.instance().props.expenseCount).toBe(1);
+  expect(wrapper).toMatchSnapshot();
 });
 test('this test for three expenses', ()=>{
   wrapper.setProps({
     expenseCount:expenses.length,
     expenseTotal:selectExpensesTotal(expenses)
   });
-  expect(wrapper.instance().props.expenseTotal).toBe(expenses[0].amount+expenses[1].amount+expenses[2].amount);
-  expect(wrapper.instance().props.expenseCount).toBe(3);
+  expect(wrapper).toMatchSnapshot();
 });

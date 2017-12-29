@@ -1,16 +1,17 @@
+import React from 'react';
 import {connect} from 'react-redux';
 import selectExpenses from '../selector/expenses';
 import selectExpensesTotal from '../selector/expenses-total';
 import numeral from 'numeral';
 
 export const ExpenseSummary=({expenseCount, expenseTotal})=>{
-  const expText = this.props.expenseCount === 1 ? 'expense':'expenses';
-  const expTextText = `${this.props.expenseCount} ${expText}`;
-  const amoResult = this.props.expenseTotal;
+  const expText = expenseCount === 1 ? 'expense':'expenses';
+  const expTextText = `${expenseCount} ${expText}`;
+  const amoResult = expenseTotal;
   const amoResultText =  `${numeral(amoResult).format('$0,0.00')}`;
   return(
     <h1>
-      Viewing {this.expTextText}  totalling {this.amoResultText}
+      Viewing {expTextText}  totalling {amoResultText}
     </h1>
 
   );
