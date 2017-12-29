@@ -15,9 +15,9 @@ export class ExpenseSummary extends React.Component{
   }
   render(){
     return(
-      <p>
+      <h1>
         Viewing {this.expenseCountF()}  totalling {this.expenseAmountF()}
-      </p>
+      </h1>
 
     );
   }
@@ -27,9 +27,10 @@ export class ExpenseSummary extends React.Component{
 
 
 const mapStateToProps  = (state) => {
+  const visExp = selectExpenses(state.expenses, state.filters);
   return {
-     expenses: selectExpenses(state.expenses, state.filters),
-     expenseCount:state.expenses.length,
+     expenses:visExp,
+     expenseCount:visExp.length,
      expenseTotal:selectExpensesTotal(state.expenses)
 
   };
