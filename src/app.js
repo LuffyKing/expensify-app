@@ -11,6 +11,7 @@ import expensesReducer from './reducers/expenses'
 import filterReducer from './reducers/filters'
 import getVisibleExpenses from './selector/expenses'
 import { Provider } from 'react-redux';
+import './firebase/firebase';
 if (process.env.NODE_ENV !=='production'){
   console.log('Development mode on!');
 }

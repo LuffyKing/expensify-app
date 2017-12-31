@@ -9,6 +9,15 @@ exports[`this test for one expense 1`] = `
 </h1>
 `;
 
+exports[`this test for three expenses 1`] = `
+<h1>
+  Viewing 
+  3 expenses
+    totalling 
+  $5,790.00
+</h1>
+`;
+
 exports[`this test if the component renders 1`] = `
 <h1>
   Viewing 
