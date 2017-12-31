@@ -68,3 +68,24 @@ test('should not edit expense if expense not found', () => {
   const state = expensesReducer(expenses, action)
   expect(state[0].amount).toEqual(195);
 });
+test('should set expenses',()=>{
+  const testExpense = {
+    id:'3',
+    description:'Credit Card',
+    note:'',
+    amount:4500,
+    createdAt:moment(0).add(4,'days').valueOf()
+  };
+  let action = {
+    type:'SET_EXPENSES',
+    expenses
+  };
+  let state = expensesReducer(expenses, action);
+  expect(state).toEqual(expenses);
+  action = {
+    type:'SET_EXPENSES',
+    expenses:[testExpense]
+  };
+  state = expensesReducer(expenses, action);
+  expect(state).toEqual([testExpense])
+});
