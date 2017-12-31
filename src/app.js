@@ -41,7 +41,6 @@ const jsx = (
 );
 let root = document.getElementById('app');
 ReactDOM.render(<p>Loading..</p> , root);
-const setE = startSetExpenses();
 store.dispatch(startSetExpenses()).then(() => {
 
   ReactDOM.render(jsx , root);
