@@ -2,15 +2,18 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {startAddExpense,addExpense, editExpense, removeExpense, setExpenses,startSetExpenses,startRemoveExpense,startEditExpense} from '../../actions/expenses';
 import expenses from '../fixtures/expenses.js';
-import database from '../../firebase/firebase'
+import database from '../../firebase/firebase';
+const uid = 'thisismytestid';
 const createMockStore = configureMockStore([thunk]);
-beforeEach(() => {
+const defaultAuthState = {auth:{uid}};
+beforeEach((done) => {
   const expensesData = {};
   expenses.forEach(({id, description, note, amount, createdAt})=>{
     expensesData[id] = {description,note,amount,createdAt};
 
   });
-  database.ref('expenses').set(expensesData);
+
+  database.ref(`users/${uid}/expenses`).set(expensesData).then(()=>done());
 });
 test('should setup remove expense action expense', ()=>{
   const action = removeExpense({id:'abc123'});
@@ -43,7 +46,7 @@ test('should setup add action object with provided values', ()=>{
 
 });
 test('should add expense to database and store',(done)=>{
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const expenseData = {
     description:'Mouse',
     amount:3000,
@@ -59,15 +62,15 @@ test('should add expense to database and store',(done)=>{
         ...expenseData
       }
     });
-    return database.ref(`expenses/${actions[0].expense.id}`).once('value')
+    return database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value')
 }).then((snapshot)=>{
   expect(snapshot.val()).toEqual(expenseData);
   done();
 });
 });
 
-test('should add expense with defautls to database and store',(done)=>{
-  const store = createMockStore({});
+test('should add expense with defaults to database and store',(done)=>{
+  const store = createMockStore(defaultAuthState);
   const expenseData = {
   }
   const defaultExpensedata = {
@@ -85,7 +88,7 @@ test('should add expense with defautls to database and store',(done)=>{
         ...defaultExpensedata
       }
     });
-    return database.ref(`expenses/${actions[0].expense.id}`).once('value')
+    return database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value')
 }).then((snapshot)=>{
   expect(snapshot.val()).toEqual(defaultExpensedata);
   done();
@@ -99,7 +102,7 @@ test('should set up set expense action object with data', () => {
   });
 });
 test('should fetch the expense from firebase',(done) => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   store.dispatch(startSetExpenses()).then(() => {
     const action = store.getActions();
     expect(action[0]).toEqual({
@@ -111,7 +114,7 @@ test('should fetch the expense from firebase',(done) => {
 });
 
 test('should edit the expense and put it into firebase',(done) => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const id = expenses[0].id;
   const updates = {amount:9000};
   store.dispatch(startEditExpense(id, updates)).then(() => {
@@ -121,8 +124,8 @@ test('should edit the expense and put it into firebase',(done) => {
       id,
       updates,
     });
-    return database.ref(`expenses/${id}`).once('value');
-    
+    return database.ref(`users/${uid}/expenses/${id}`).once('value');
+
   }).then((snapshot) => {
     const val = snapshot.val();
     expect(snapshot.val().amount).toBe(updates.amount);
@@ -131,7 +134,7 @@ test('should edit the expense and put it into firebase',(done) => {
 });
 
 test('should delete the expense from firebase', (done) => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const id = expenses[0].id;
   store.dispatch(startRemoveExpense({id})).then(() => {
     const action =store.getActions();
@@ -139,7 +142,7 @@ test('should delete the expense from firebase', (done) => {
       type:'REMOVE_EXPENSE',
       id
     });
-    return database.ref(`expenses/${id}`).once('value');
+    return database.ref(`users/${uid}/expenses/${id}`).once('value');
 
   }).then((snapshot) => {
     const val = snapshot.val();

@@ -7,18 +7,12 @@ const config = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 };
-/*
-'process.env.FIREBASE_API_KEY':JSON.stringify(process.env.FIREBASE_API_KEY),
-'process.env.FIREBASE_AUTH_DOMAIN':JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
-'process.env.FIREBASE_DATABASE_URL':JSON.stringify(process.env.FIREBASE_DATABASE_URL),
-'process.env.FIREBASE_PROJECT_ID':JSON.stringify(process.env.FIREBASE_PROJECT_ID),
-'process.env.FIREBASE_STORAGE_BUCKET':JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
-'process.env.FIREBASE_MESSAGING_SENDER_ID':JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
-*/
+
 firebase.initializeApp(config);
 
 const database = firebase.database();
-export{firebase, database as default};
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+export{firebase,googleAuthProvider, database as default};
 // //child_removed
 // database.ref('expenses').on('child_removed', (snapshot)=>{
 //   console.log(snapshot.key, snapshot.val());
