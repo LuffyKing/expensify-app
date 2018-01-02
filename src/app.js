@@ -13,6 +13,7 @@ import getVisibleExpenses from './selector/expenses'
 import { Provider } from 'react-redux';
 import {firebase} from './firebase/firebase';
 import {login, logout} from './actions/auth';
+import LoadingPage from './components/LoadingPage';
 if (process.env.NODE_ENV !=='production'){
   console.log('Development mode on!');
 }
@@ -47,7 +48,7 @@ const jsx = (
   </Provider>
 );
 let root = document.getElementById('app');
-ReactDOM.render(<p>Loading..</p> , root);
+ReactDOM.render(<LoadingPage/> , root);
 
 firebase.auth().onAuthStateChanged((user)=>{
   if(user){

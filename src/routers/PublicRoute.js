@@ -13,7 +13,6 @@ export const PublicRoute = ({
 
     ):(
       <div>
-        <Header></Header>
         <Component {...props}></Component>
       </div>
     )

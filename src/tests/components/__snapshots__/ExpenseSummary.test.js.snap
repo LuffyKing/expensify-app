@@ -1,28 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`this test for one expense 1`] = `
-<h1>
-  Viewing 
-  1 expense
-    totalling 
-  $195.00
-</h1>
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        1
+      </span>
+       
+      expense
+       totalling 
+      <span>
+        $195.00
+      </span>
+    </h1>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="genButton"
+        replace={false}
+        to="/create"
+      >
+        Add expense
+      </Link>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`this test for three expenses 1`] = `
-<h1>
-  Viewing 
-  3 expenses
-    totalling 
-  $5,790.00
-</h1>
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        3
+      </span>
+       
+      expenses
+       totalling 
+      <span>
+        $5,790.00
+      </span>
+    </h1>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="genButton"
+        replace={false}
+        to="/create"
+      >
+        Add expense
+      </Link>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`this test if the component renders 1`] = `
-<h1>
-  Viewing 
-  0 expenses
-    totalling 
-  $0.00
-</h1>
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        0
+      </span>
+       
+      expenses
+       totalling 
+      <span>
+        $0.00
+      </span>
+    </h1>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="genButton"
+        replace={false}
+        to="/create"
+      >
+        Add expense
+      </Link>
+    </div>
+  </div>
+</div>
 `;

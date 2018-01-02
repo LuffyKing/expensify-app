@@ -12,9 +12,7 @@ if (process.env.NODE_ENV==='test'){
   require('dotenv').config({ path:'.env.development'});
 }
 module.exports = {
-  entry: {
-    app: './src/app.js'
-  },
+  entry: [ 'babel-polyfill','./src/app.js'],
   plugins: [
      new HtmlWebpackPlugin({
        template: 'index.html',
