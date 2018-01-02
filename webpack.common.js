@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
-'adjustment'
+
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (process.env.NODE_ENV==='test'){
@@ -12,11 +12,13 @@ if (process.env.NODE_ENV==='test'){
   require('dotenv').config({ path:'.env.development'});
 }
 module.exports = {
-  entry: [ 'babel-polyfill','./src/app.js'],
+  entry: [ 'babel-polyfill','./src/app.js'
+  ],
   plugins: [
      new HtmlWebpackPlugin({
        template: 'index.html',
      }),
+     new CleanWebpackPlugin(['dist']),
      new ExtractTextPlugin("styles.css"),
      new webpack.DefinePlugin({
        'process.env.FIREBASE_API_KEY':JSON.stringify(process.env.FIREBASE_API_KEY),
@@ -53,7 +55,8 @@ module.exports = {
 
   },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public/dist')
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'public','dist'),
+    publicPath:'/dist/'
   }
 };
